@@ -1,3 +1,6 @@
+module MongodbFulltextSearch
+end
+
 require 'mongodb_fulltext_search/mongodb_fulltext_search'
 
 module MongodbFulltextSearch
