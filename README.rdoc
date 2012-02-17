@@ -114,7 +114,7 @@ To rebuild indexes for all models:
 
 To rebuild indexes for one model:
 
-  $ rake db:mongo:rebuild_fulltext_search_indexes[Model]
+  $ rake db:mongo:rebuild_fulltext_search_indexes[Widget]
 
 NOTE: The indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run this rake task any time your models change.
 
