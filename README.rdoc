@@ -108,6 +108,10 @@ To return document identifiers and search scores as a +Hash+:
   @scores = Widget.fulltext_search params[:search_query], :return_scores => true
   @scores.each { |id, score| id + ': ' + score }
 
+== Normalization
+
+Strings are normalized using +normalize(:kd)+ (for queries and indexes), so for example +resumé+ and +resume+ would match.
+
 == Stop Words
 
 To blacklist words from the indexes, stop words can be specified in a YAML config file.
