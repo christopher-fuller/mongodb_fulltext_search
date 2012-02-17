@@ -106,6 +106,18 @@ To return document identifiers and search scores as a +Hash+:
   @scores = Widget.fulltext_search params[:search_query], :return_scores => true
   @scores.each { |id, score| id + ': ' + score }
 
+== Stop Words
+
+Words that are blacklisted from the indexes are called +stop_words+. Stop words can be specified in a YAML config file.
+
+A config file can be generated with a default set of stop words with:
+
+  $ rails g mongodb_fulltext_search:config
+
+The default stop words are:
+
+  a, an, and, are, as, at, be, but, by, for, if, in, into, is, it, no, not, of, on, or, such, that, the, their, then, there, these, they, this, to, was, will, with
+
 == Rake Tasks
 
 To rebuild indexes for all models:
