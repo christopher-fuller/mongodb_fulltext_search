@@ -67,7 +67,7 @@ Or index virtual attributes:
   fulltext_search_in :name_and_desc
   
   def name_and_desc
-	[ name, desc ].join ' '
+    [ name, desc ].join ' '
   end
 
 In controllers, perform searches with:
