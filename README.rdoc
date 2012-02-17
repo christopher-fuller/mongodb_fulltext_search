@@ -110,7 +110,7 @@ To return document identifiers and search scores as a +Hash+:
 
 == Normalization
 
-Strings are normalized using <tt>normalize(:kd)</tt> (for queries and and indexes), so for example +resumé+ and +resume+ would match.
+Strings are normalized using <tt>normalize(:kd)</tt> (for queries and also indexes), so for example +resumé+ and +resume+ would match.
 
 == Stop Words
 
