@@ -136,6 +136,11 @@ To rebuild indexes for one model:
 
 NOTE: The indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run this rake task any time your models change.
 
+== To Do
+
+* Filtered indexes
+* Shared indexes
+
 == Copyright
 
 Copyright (c) 2012 Christopher Fuller. See MIT-LICENSE for details.
