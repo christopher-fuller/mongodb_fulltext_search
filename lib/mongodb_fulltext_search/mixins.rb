@@ -14,8 +14,8 @@ module MongodbFulltextSearch::Mixins
       
       options = args.last.is_a?(Hash) ? args.pop : {}
       
-      if options.has_key? :index_name
-        collection_name = (options.delete :index_name).to_sym
+      if options.has_key? :index
+        collection_name = (options.delete :index).to_sym
       else
         count = fulltext_search_options.count
         collection_name = "fulltext_search_index_#{collection.name}_#{count}".to_sym
