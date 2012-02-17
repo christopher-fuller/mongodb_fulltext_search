@@ -20,7 +20,13 @@ Add to Gemfile:
 
 == Indexes
 
-The indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run the rake task below to rebuild the indexes any time your models change.
+This gem implements indexes specifically for the fulltext search.
+
+The fulltext indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run the rake task (below) to rebuild the indexes any time your models change.
+
+The indexes are implemented as MongoDB collections (since MongoDB's built-in indexes do not currently support fulltext search), therefore the fulltext indexes are referred to as "index collections" for the rest of this documentation. The "index collections" are stored in the same database that the models are persisted to.
+
+The "index collections" will benefit from using MongoDB indexes themselves. To enable MongoDB indexes on the "index collections", simply use the normal rake command +rake db:mongoid:create_indexes+ (or for development or testing, you can activate the auto-creation of indexes if your ODM supports it).
 
 == Examples
 
