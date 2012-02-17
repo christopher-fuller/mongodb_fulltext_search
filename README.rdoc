@@ -93,6 +93,19 @@ or
 
 NOTE: An +ArgumentError+ exception will be raised if multiple indexes exist but an index is not specified.
 
+By default, results are limited to 20 models but you can specify a limit when searching:
+
+  @widgets = Widget.fulltext_search params[:search_query], :limit => 10
+
+And you can also specify an offset:
+
+  @widgets = Widget.fulltext_search params[:search_query], :offset => 20
+
+To return document identifiers and search scores as a +Hash+:
+
+  @scores = Widget.fulltext_search params[:search_query], :return_scores => true
+  @scores.each { |id, score| id + ': ' + score }
+
 == Rake Tasks
 
 To rebuild indexes for all models:
