@@ -105,7 +105,11 @@ module MongodbFulltextSearch::Mixins
           if options.has_key? :index
             collection_name = options[:index]
           else
-            collection_name = fulltext_search_options.keys.first
+            if fulltext_search_options.count == 1
+              collection_name = fulltext_search_options.keys.first
+            else
+              raise ArgumentError, 'index not specified', caller
+            end
           end
           
           aggregate = db.command(
