@@ -1,12 +1,10 @@
 module MongodbFulltextSearch::Helpers
   
-  STOP_WORDS = ['a', 'an', 'and', 'are', 'as', 'at', 'be', 'but', 'by', 'for', 'if', 'in', 'into', 'is', 'it', 'no', 'not', 'of', 'on', 'or', 'such', 'that', 'the', 'their', 'then', 'there', 'these', 'they', 'this', 'to', 'was', 'will', 'with']
-  
   def words_for(text)
     words = []
     if text.is_a? String
       text.downcase.gsub(/[^a-z0-9\s]/, '').split(/\s/).each do |word|
-        words << word unless word.blank? or STOP_WORDS.include? word
+        words << word unless word.blank? or stop_words.include? word
       end
     end
     words
@@ -24,6 +22,21 @@ module MongodbFulltextSearch::Helpers
       @mongomapper = Object.const_defined?('MongoMapper')
     end
     @mongomapper
+  end
+  
+  private
+  
+  def stop_words
+    if @stop_words.nil?
+      file = "#{Rails.root}/config/fulltext_search.yml"
+      config = YAML.load(ERB.new(File.read(file)).result) if File.exists? file
+      if not config.nil? and config.include? 'stop_words'
+        @stop_words = config['stop_words'].gsub(/\s/, '').split ','
+      else
+        @stop_words = []
+      end
+    end
+    @stop_words
   end
   
 end
