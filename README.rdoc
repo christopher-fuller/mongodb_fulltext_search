@@ -20,7 +20,7 @@ Add to Gemfile:
 
 == Indexes
 
-The indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run the rake task to rebuild the indexes any time your models change.
+The indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run the rake task below to rebuild the indexes any time your models change.
 
 == Examples
 
