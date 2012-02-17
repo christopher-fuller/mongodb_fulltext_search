@@ -114,7 +114,7 @@ Strings are normalized using <tt>normalize(:kd)</tt> (for queries and also index
 
 == Stop Words
 
-To blacklist words from the indexes, stop words can be specified in a YAML config file.
+Stop words (i.e. blacklisted words) can be specified in a YAML config file.
 
 To generate a config file with a default set of stop words:
 

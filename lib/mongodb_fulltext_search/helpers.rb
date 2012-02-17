@@ -3,7 +3,7 @@ module MongodbFulltextSearch::Helpers
   def words_for(text)
     words = []
     if text.is_a? String
-      text.normalize(:kd).downcase.gsub(/[^a-z0-9\s]/, '').split(/\s/).each do |word|
+      text.mb_chars.normalize(:kd).to_s.downcase.gsub(/[^a-z0-9\s]/, '').split(/\s/).each do |word|
         words << word unless word.blank? or stop_words.include? word
       end
     end
