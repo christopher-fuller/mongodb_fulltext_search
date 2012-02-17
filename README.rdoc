@@ -24,9 +24,11 @@ This gem implements indexes specifically for the fulltext search.
 
 The fulltext indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run the rake task (below) to rebuild the indexes any time your models change.
 
-The indexes are implemented as MongoDB collections (since MongoDB's built-in indexes do not currently support fulltext search), therefore the fulltext indexes are referred to as "index collections" for the rest of this documentation. The "index collections" are stored in the same database that the models are persisted to.
+The indexes are implemented as MongoDB collections (since MongoDB's built-in indexes do not currently support fulltext search), therefore the fulltext indexes could be considered "index collections". The "index collections" are stored in the same database that the models are persisted to.
 
 The "index collections" will benefit from using MongoDB indexes themselves. To enable MongoDB indexes on the "index collections", simply use the normal rake command <tt>rake db:mongoid:create_indexes</tt> (or for development or testing, you can enable auto-creation of indexes if your ODM supports it).
+
+For the remainder of the documentation, the "index collections" will simply be referred to as "indexes".
 
 == Examples
 
@@ -108,9 +110,9 @@ To return document identifiers and search scores as a +Hash+:
 
 == Stop Words
 
-Words that are blacklisted from the indexes are called +stop_words+. Stop words can be specified in a YAML config file.
+To blacklist words from the indexes, stop words can be specified in a YAML config file.
 
-A config file can be generated with a default set of stop words with:
+To generate a config file with a default set of stop words:
 
   $ rails g mongodb_fulltext_search:config
 
