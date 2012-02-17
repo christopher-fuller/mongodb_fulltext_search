@@ -32,11 +32,11 @@ TODO: Options
 
 == Rake Tasks
 
-To rebuild all fulltext search indexes:
+To rebuild indexes for all models:
 
   $ rake db:mongo:rebuild_fulltext_search_indexes
 
-To rebuild one fulltext search index:
+To rebuild indexes for one model:
 
   $ rake db:mongo:rebuild_fulltext_search_indexes[Model]
 
