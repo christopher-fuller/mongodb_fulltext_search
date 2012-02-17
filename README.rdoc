@@ -76,7 +76,7 @@ In controllers, perform searches with:
 
   @widgets = Widget.fulltext_search params[:search_query]
 
-When fulltext searches are performed, a +:fulltext_search_score+ attribute is added to the models:
+When fulltext searches are performed, a +fulltext_search_score+ attribute is added to the models:
 
   @widgets.each { |widget| widget.fulltext_search_score }
 
