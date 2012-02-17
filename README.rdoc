@@ -72,6 +72,8 @@ Or index virtual attributes:
     [ name, desc ].join ' '
   end
 
+== Performing Searches
+
 In controllers, perform searches with:
 
   @widgets = Widget.fulltext_search params[:search_query]
@@ -79,6 +81,8 @@ In controllers, perform searches with:
 When fulltext searches are performed, a +fulltext_search_score+ attribute is added to the models:
 
   @widgets.each { |widget| widget.fulltext_search_score }
+
+== Multiple Indexes
 
 It is possible to create more than one index on a model:
 
@@ -94,6 +98,8 @@ or
   @widgets = Widget.fulltext_search params[:search_query], :index => 'desc_index'
 
 NOTE: An +ArgumentError+ exception will be raised if multiple indexes exist but an index is not specified.
+
+== Options
 
 By default, results are limited to 20 models but you can specify a limit when searching:
 
