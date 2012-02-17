@@ -30,11 +30,68 @@ The "index collections" will benefit from using MongoDB indexes themselves. To e
 
 == Examples
 
-TODO: Examples
+Mongoid example:
 
-== Options
+  class Widget
+    
+    include Mongoid::Document
+    include Mongoid::FullTextSearch
+    
+    field :name, :type => String
+    field :desc, :type => String
+    
+    fulltext_search_in :desc
+    
+  end
 
-TODO: Options
+MongoMapper example:
+
+  class Widget
+    
+    include MongoMapper::Document
+    include MongoMapper::FullTextSearch
+    
+    key :name, String
+    key :desc, String
+    
+    fulltext_search_in :desc
+  
+  end
+
+Or index multiple attributes together:
+
+  fulltext_search_in :name, :desc
+
+Or index virtual attributes:
+
+  fulltext_search_in :name_and_desc
+  
+  def name_and_desc
+	[ name, desc ].join ' '
+  end
+
+In controllers, perform searches with:
+
+  @widgets = Widget.fulltext_search params[:search_query]
+
+When fulltext searches are performed, a +:fulltext_search_score+ attribute is added to the models:
+
+  @widgets.each { |widget| widget.fulltext_search_score }
+
+It is possible to create more than one index on a model:
+
+  fulltext_search_in :name, :index => 'name_index'
+  fulltext_search_in :desc, :index => 'desc_index'
+
+In this case, you MUST specify an index when performing a search:
+
+  @widgets = Widget.fulltext_search params[:search_query], :index => 'name_index'
+
+or
+
+  @widgets = Widget.fulltext_search params[:search_query], :index => 'desc_index'
+
+NOTE: An +ArgumentError+ exception will be raised if multiple indexes exist but an index is not specified.
 
 == Rake Tasks
 
