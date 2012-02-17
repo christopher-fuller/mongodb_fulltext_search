@@ -4,7 +4,9 @@ A gem that adds fulltext search capability to Mongoid[http://mongoid.org/] or Mo
 
 == Prerequisites
 
-Rails must already be configured to use either Mongoid[http://mongoid.org/] or MongoMapper[http://mongomapper.com/] and you must use MongoDB[http://mongodb.org/] version 2.1.0 or higher.
+Rails must be configured to use either Mongoid or MongoMapper and MongoDB[http://mongodb.org/] version 2.1.0 (or higher) is required.
+
+Please get in touch if you’d like to see added support for another MongoDB object mapper (ODM).
 
 == Installation
 
@@ -14,11 +16,11 @@ Rails must already be configured to use either Mongoid[http://mongoid.org/] or M
 
 Add to Gemfile:
 
-  gem "mongodb_fulltext_search"
+  gem 'mongodb_fulltext_search'
 
 == Indexes
 
-The indexes are maintained automatically by hooking into the +before_save+ and +before_destroy+ callbacks on models, however you MUST run the rake task to rebuild the indexes any time your models change.
+The indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run the rake task to rebuild the indexes any time your models change.
 
 == Examples
 
@@ -38,7 +40,7 @@ To rebuild one fulltext search index:
 
   $ rake db:mongo:rebuild_fulltext_search_indexes[Model]
 
-NOTE: The indexes are maintained automatically by hooking into the +before_save+ and +before_destroy+ callbacks on models, however you MUST run this rake task any time your models change.
+NOTE: The indexes are maintained automatically via the +before_save+ and +before_destroy+ callbacks on models, however you MUST run this rake task any time your models change.
 
 == Copyright
 
