@@ -1,6 +1,6 @@
 = mongodb_fulltext_search
 
-A gem that adds fulltext search capability to Mongoid[http://mongoid.org/] or MongoMapper[http://mongomapper.com/] documents utilizing the MongoDB[http://mongodb.org/] aggregation framework.
+A gem that adds fulltext search capability to Mongoid[http://mongoid.org/] or MongoMapper[http://mongomapper.com/] documents. Search is performed with the MongoDB[http://mongodb.org/] aggregation framework.
 
 == Prerequisites
 
@@ -149,4 +149,4 @@ NOTE: The indexes are maintained automatically via the +before_save+ and +before
 
 == Copyright
 
-Copyright (c) 2012 Christopher Fuller. See MIT-LICENSE for details.
+Copyright (c) 2012 Christopher Fuller. See MIT-LICENSE[http://github.com/chrisfuller/mongodb_fulltext_search/blob/master/MIT-LICENSE] for details.
