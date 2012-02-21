@@ -1,6 +1,6 @@
 = mongodb_fulltext_search
 
-A gem that adds fulltext search capability to Mongoid[http://mongoid.org/] or MongoMapper[http://mongomapper.com/] documents. Search is performed with the MongoDB[http://mongodb.org/] aggregation framework.
+A gem that adds fulltext search capability to Mongoid[http://mongoid.org/] or MongoMapper[http://mongomapper.com/] documents. The MongoDB[http://mongodb.org/] aggregation framework is utilized to perform searches.
 
 == Prerequisites
 
