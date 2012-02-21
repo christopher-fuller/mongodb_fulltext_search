@@ -1,5 +1,14 @@
 module MongodbFulltextSearch::Helpers
   
+  def db
+    if mongoid?
+      db = Mongoid.master
+    elsif mongomapper?
+      db = MongoMapper.database
+    end
+    db
+  end
+  
   def words_for(text)
     words = []
     if text.is_a? String

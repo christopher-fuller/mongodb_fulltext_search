@@ -112,7 +112,7 @@ module MongodbFulltextSearch::Mixins
             end
           end
           
-          aggregate = db.command(
+          aggregate = MongodbFulltextSearch.db.command(
             :aggregate => collection_name.to_s,
             :pipeline  => pipeline
           )
