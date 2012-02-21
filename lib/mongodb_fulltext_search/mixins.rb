@@ -158,7 +158,9 @@ module MongodbFulltextSearch::Mixins
       index.counts = []
       
       values = []; options[:attributes].each do |attribute|
-        values << send(attribute.to_sym) if respond_to? attribute.to_sym
+        if respond_to? attribute.to_sym
+          values << send attribute.to_sym
+        end
       end
       
       unless values.nil?
