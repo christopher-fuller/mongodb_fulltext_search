@@ -26,7 +26,9 @@ The fulltext indexes are maintained automatically via the +before_save+ and +bef
 
 The indexes are implemented as MongoDB collections (since MongoDB's built-in indexes do not currently support fulltext search), therefore the fulltext indexes are actually "index collections". The "index collections" are stored in the same database that the models are persisted to.
 
-The "index collections" benefit from using MongoDB indexes themselves and have MongoDB indexes defined via the underlying ODM, therefore be sure to create the indexes following the instructions for the ODM you are using. With Mongoid for example, use the normal rake command <tt>rake db:mongoid:create_indexes</tt> (or for development or testing, you can enable auto-creation of indexes using the +autocreate_indexes+ configuration setting).
+The "index collections" benefit from using MongoDB indexes themselves and have MongoDB indexes defined via the underlying ODM, therefore be sure to create the indexes following the instructions for the ODM you are using.
+
+With Mongoid for example, use the normal rake command <tt>rake db:mongoid:create_indexes</tt> (or for development or testing, you can enable auto-creation of indexes using the +autocreate_indexes+ configuration setting). With MongoMapper for example, the indexes should be created automatically by default.
 
 For the remainder of the documentation, the "index collections" will now simply be referred to as "indexes".
 
