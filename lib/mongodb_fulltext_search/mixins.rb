@@ -160,9 +160,11 @@ module MongodbFulltextSearch::Mixins
       values = []; options[:attributes].each do |attribute|
         if respond_to? attribute.to_sym
           value_array = send(attribute.to_sym)
-          value_array = [value] if value.is_a? String
+          value_array = [value_array] if value_array.is_a? String
           if value_array.is_a? Array
-            value_array.each do { |value| values << value }
+            value_array.each do |value|
+              values << value if value.is_a? String
+            end
           end
         end
       end
