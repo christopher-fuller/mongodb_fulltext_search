@@ -159,7 +159,7 @@ module MongodbFulltextSearch::Mixins
       
       values = []; options[:attributes].each do |attribute|
         if respond_to? attribute.to_sym
-          values << send attribute.to_sym
+          values << send(attribute.to_sym)
         end
       end
       
