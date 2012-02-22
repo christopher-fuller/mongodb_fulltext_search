@@ -72,6 +72,8 @@ Or index virtual attributes:
     [ name, desc ].join ' '
   end
 
+NOTE: All attributes (and virtual attributes) supplied to +fulltext_search_in+ must return either a string or an array of strings.
+
 == Performing Searches
 
 In controllers, perform searches with:
