@@ -111,7 +111,7 @@ And you can also specify an offset:
 
   @widgets = Widget.fulltext_search params[:search_query], :offset => 20
 
-To return document identifiers and search scores as a +Hash+:
+To return document identifiers and search scores as a +Hash+ (instead of the returning the model objects):
 
   @scores = Widget.fulltext_search params[:search_query], :return_scores => true
   @scores.each { |id, score| id + ': ' + score }
