@@ -39,8 +39,8 @@ Mongoid example:
     include Mongoid::Document
     include Mongoid::FullTextSearch
     
-    field :name, :type => String
     field :desc, :type => String
+    field :tags, :type => Array
     
     fulltext_search_in :desc
     
@@ -53,8 +53,8 @@ MongoMapper example:
     include MongoMapper::Document
     include MongoMapper::FullTextSearch
     
-    key :name, String
     key :desc, String
+    key :tags, Array
     
     fulltext_search_in :desc
   
@@ -62,14 +62,14 @@ MongoMapper example:
 
 Or index multiple attributes together:
 
-  fulltext_search_in :name, :desc
+  fulltext_search_in :desc, :tags
 
 Or index virtual attributes:
 
-  fulltext_search_in :name_and_desc
+  fulltext_search_in :desc_and_tags
   
-  def name_and_desc
-    [ name, desc ].join ' '
+  def desc_and_tags
+    [ desc ] + tags
   end
 
 NOTE: All attributes (and virtual attributes) supplied to +fulltext_search_in+ must return either a string or an array of strings.
@@ -88,16 +88,16 @@ When fulltext searches are performed, a +fulltext_search_score+ attribute is add
 
 It is possible to create more than one index on a model:
 
-  fulltext_search_in :name, :index => 'name_index'
   fulltext_search_in :desc, :index => 'desc_index'
+  fulltext_search_in :tags, :index => 'tags_index'
 
 In this case, you MUST specify an index when performing a search:
 
-  @widgets = Widget.fulltext_search params[:search_query], :index => 'name_index'
+  @widgets = Widget.fulltext_search params[:search_query], :index => 'desc_index'
 
 or
 
-  @widgets = Widget.fulltext_search params[:search_query], :index => 'desc_index'
+  @widgets = Widget.fulltext_search params[:search_query], :index => 'tags_index'
 
 NOTE: An +ArgumentError+ exception will be raised if multiple indexes exist but an index is not specified.
 
