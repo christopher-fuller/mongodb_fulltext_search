@@ -105,6 +105,10 @@ NOTE: An +ArgumentError+ exception will be raised if multiple indexes exist but 
 
 == Options
 
+To match partial words, turn off exact matching:
+
+  @widgets = Widget.fulltext_search params[:search_query], :exact => false
+
 By default, results are limited to 20 models but you can specify a limit when searching:
 
   @widgets = Widget.fulltext_search params[:search_query], :limit => 10

@@ -65,6 +65,7 @@ module MongodbFulltextSearch::Mixins
     def fulltext_search(query, options = {})
       
       options = {
+        :exact         => true,
         :limit         => 20,
         :offset        => 0,
         :return_scores => false
@@ -79,7 +80,11 @@ module MongodbFulltextSearch::Mixins
         unless words.empty?
           
           queries = []; words.each do |word|
-            queries << { 'counts.word' => word }
+            if !!options[:exact]
+              queries << { 'counts.word' => word }
+            else
+              queries << { 'counts.word' => { '$regex' => Regexp.escape(word) } }
+            end
           end
           
           limit = options[:limit].to_i
