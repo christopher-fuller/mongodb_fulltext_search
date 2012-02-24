@@ -9,6 +9,16 @@ module MongodbFulltextSearch::Mixins
   
   module ClassMethods
     
+    def create_indexes
+      if MongodbFulltextSearch.mongoid?
+        fulltext_search_options.values.each do |options|
+          if options[:model].respond_to? :create_indexes
+            options[:model].send :create_indexes
+          end
+        end
+      end
+    end
+    
     def fulltext_search_in(*args)
       
       options = args.last.is_a?(Hash) ? args.pop : {}
