@@ -20,8 +20,6 @@ module MongodbFulltextSearch::Mixins
         collection_name = "fulltext_search_index_#{collection.name}_#{count}".to_sym
       end
       
-      # options = {}.merge options
-      
       if args.empty?
         options[:attributes] = [:to_s]
       else
