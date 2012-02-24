@@ -3,21 +3,28 @@ module MongodbFulltextSearch::Mixins
   extend ActiveSupport::Concern
   
   included do
-    cattr_accessor :fulltext_search_options
-    self.fulltext_search_options = {}
-  end
-  
-  module ClassMethods
     
-    def create_indexes
-      if MongodbFulltextSearch.mongoid?
-        fulltext_search_options.values.each do |options|
-          if options[:model].respond_to? :create_indexes
-            options[:model].send :create_indexes
+    cattr_accessor :fulltext_search_options
+    
+    self.fulltext_search_options = {}
+    
+    if MongodbFulltextSearch.mongoid?
+      (class << self; self; end).class_eval do
+        create_indexes = instance_method :create_indexes
+        define_method :create_indexes do
+          create_indexes.bind(self).call
+          fulltext_search_options.values.each do |options|
+            if options[:model].respond_to? :create_indexes
+              options[:model].send :create_indexes
+            end
           end
         end
       end
     end
+    
+  end
+  
+  module ClassMethods
     
     def fulltext_search_in(*args)
       
