@@ -4,13 +4,12 @@ module MongodbFulltextSearch::Mixins
   
   included do
     cattr_accessor :fulltext_search_options
+    self.fulltext_search_options = {}
   end
   
   module ClassMethods
     
     def fulltext_search_in(*args)
-      
-      self.fulltext_search_options = {} unless fulltext_search_options.is_a? Hash
       
       options = args.last.is_a?(Hash) ? args.pop : {}
       
