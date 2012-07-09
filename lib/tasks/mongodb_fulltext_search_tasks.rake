@@ -32,7 +32,7 @@ namespace :db do
           puts "Recreating fulltext search index for model '#{model_name}' ..."
           model_class = model_name.constantize
           model_class.fulltext_search_options.keys.each do |collection_name|
-            MongodbFulltextSearch.db[collection_name.to_s].drop
+            MongodbFulltextSearch.mongo_session(model_class)[collection_name.to_s].drop
           end
           model_class.all.each do |model|
             model.send :update_in_fulltext_search_indexes

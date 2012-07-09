@@ -1,14 +1,14 @@
 module MongodbFulltextSearch::Helpers
-  
-  def db
+
+  def mongo_session(model)
     if mongoid?
-      db = Mongoid.master
+      mongo_session = model.mongo_session
     elsif mongomapper?
-      db = MongoMapper.database
+      mongo_session = MongoMapper.database
     end
-    db
+    mongo_session
   end
-  
+
   def words_for(text)
     words = []
     if text.is_a? String
@@ -18,23 +18,23 @@ module MongodbFulltextSearch::Helpers
     end
     words
   end
-  
+
   def mongoid?
     if @mongoid.nil?
       @mongoid = Object.const_defined?('Mongoid')
     end
     @mongoid
   end
-  
+
   def mongomapper?
     if @mongomapper.nil?
       @mongomapper = Object.const_defined?('MongoMapper')
     end
     @mongomapper
   end
-  
+
   private
-  
+
   def stop_words
     if @stop_words.nil?
       file = "#{Rails.root}/config/fulltext_search.yml"
@@ -47,5 +47,5 @@ module MongodbFulltextSearch::Helpers
     end
     @stop_words
   end
-  
+
 end

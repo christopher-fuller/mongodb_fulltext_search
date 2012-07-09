@@ -28,7 +28,7 @@ The indexes are implemented as MongoDB collections (since MongoDB's built-in ind
 
 The "index collections" benefit from using MongoDB indexes themselves and have MongoDB indexes defined via the underlying ODM, therefore be sure to create the indexes following the instructions for the ODM you are using.
 
-With Mongoid for example, use the normal rake command <tt>rake db:mongoid:create_indexes</tt> (or for development or testing, you can enable auto-creation of indexes using the +autocreate_indexes+ configuration setting). With MongoMapper for example, the indexes should be created automatically by default.
+With Mongoid for example, use the normal rake command <tt>rake db:mongoid:create_indexes</tt>. With MongoMapper for example, the indexes should be created automatically by default.
 
 For the remainder of the documentation, the "index collections" will now simply be referred to as "indexes".
 
@@ -37,29 +37,29 @@ For the remainder of the documentation, the "index collections" will now simply 
 Mongoid example:
 
   class Widget
-    
+
     include Mongoid::Document
     include Mongoid::FullTextSearch
-    
+
     field :desc, :type => String
     field :tags, :type => Array
-    
+
     fulltext_search_in :desc
-    
+
   end
 
 MongoMapper example:
 
   class Widget
-    
+
     include MongoMapper::Document
     include MongoMapper::FullTextSearch
-    
+
     key :desc, String
     key :tags, Array
-    
+
     fulltext_search_in :desc
-  
+
   end
 
 Or index multiple attributes together:
@@ -69,7 +69,7 @@ Or index multiple attributes together:
 Or index virtual attributes:
 
   fulltext_search_in :desc_and_tags
-  
+
   def desc_and_tags
     [ desc ] + tags
   end
