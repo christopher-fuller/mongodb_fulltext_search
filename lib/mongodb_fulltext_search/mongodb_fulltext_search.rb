@@ -1,10 +1,9 @@
 require 'mongodb_fulltext_search/helpers'
+require 'mongodb_fulltext_search/mixins'
 
 module MongodbFulltextSearch
   extend MongodbFulltextSearch::Helpers
 end
-
-require 'mongodb_fulltext_search/mixins'
 
 if MongodbFulltextSearch.mongoid?
   Mongoid.const_set :FullTextSearch, MongodbFulltextSearch::Mixins
